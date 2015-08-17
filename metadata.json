@@ -1,0 +1,24 @@
+{
+  "name": "CraigWatson1987-nixstats",
+  "version": "0.0.1",
+  "author": "Craig Watson",
+  "summary": "Manage installation of NIXStats agent.",
+  "license": "Apache-2.0",
+  "source": "git://github.com/craigwatson/puppet-nixstats.git",
+  "project_page": "https://github.com/craigwatson/puppet-nixstats",
+  "issues_url": "https://github.com/craigwatson/puppet-nixstats/issues",
+  "description": "Manages the installation of NIXStats agent.",
+  "tags": [ "nixstats","stats","monitoring"],
+  "dependencies": [
+    { "name": "puppetlabs/stdlib", "version_requirement": ">=3.2.0 <5.0.0" }
+  ],
+  "requirements": [
+    { "name": "puppet", "version_requirement": ">=3.0.0 <5.0.0" }
+  ],
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "Ubuntu",
+      "operatingsystemrelease": [ "14.04", "12.04", "10.04" ]
+    }
+  ]
+}
