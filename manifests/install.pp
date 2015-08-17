@@ -26,7 +26,7 @@ class nixstats::install {
     }
 
     if !defined(Package['gzip']) {
-      package { 'gzip': 
+      package { 'gzip':
         ensure => present,
       }
     }
