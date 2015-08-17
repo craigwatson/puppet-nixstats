@@ -1,6 +1,6 @@
 {
   "name": "CraigWatson1987-nixstats",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "author": "Craig Watson",
   "summary": "Manage installation of NIXStats agent.",
   "license": "Apache-2.0",
