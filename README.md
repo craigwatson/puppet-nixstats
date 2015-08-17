@@ -24,14 +24,6 @@ This module manages the installation and configuration of the NIXStats server mo
 
 A rough Puppetisation of the install scripts available via [nixstats.com](https://nixstats.com), this module creates the directory structure, and all necessary files for the NIXStats agent to run.
 
-## Setup
-
-### What puppet-nixstats affects
-  * TBC
-
-### Setup Requirements
-  * TBC
-
 ## Usage
 
 The simplest way to use the module is to pass your user ID to the module. The module will then configure the directories and packages necessary to run the NIXstats agent.
