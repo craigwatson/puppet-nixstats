@@ -23,6 +23,10 @@ class nixstats::install {
       package { 'curl':
         ensure => present,
       }
+
+      Exec['download_nixstats'] {
+        require => [File['/etc/nixstats'],Package['curl']],
+      }
     }
 
     if !defined(Package['gzip']) {
@@ -41,6 +45,10 @@ class nixstats::install {
       package { $::nixstats::params::cron_package:
         ensure => present,
       }
+    }
+  } else {
+    Exec['download_nixstats'] {
+      require => File['/etc/nixstats'],
     }
   }
 
