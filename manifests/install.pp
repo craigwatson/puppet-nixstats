@@ -55,7 +55,7 @@ class nixstats::install {
   exec { 'download_nixstats':
     command => '/usr/bin/curl -k -o /etc/nixstats/nixstats.sh https://api.nixstats.com/nixstats.sh',
     creates => '/etc/nixstats/nixstats.sh',
-    require => File['/etc/nixstats'],
+    require => [File['/etc/nixstats'],Package['curl']],
   }
 
 }
