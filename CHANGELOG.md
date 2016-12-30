@@ -1,5 +1,12 @@
 # Change Log
 
+## 1.0.4
+
+### 2016-12-30 - Bugfix Release
+
+#### Class: `nixstats`
+  * Fixing more stdlib deprecation warnings
+
 ## 1.0.3
 
 ### 2016-12-30 - Bugfix Release
