@@ -33,12 +33,9 @@
 #
 #
 class nixstats (
-  $user_id,
-  $manage_packages = true,
+  String   $user_id,
+  Boolean  $manage_packages = true,
 ) {
-
-  validate_legacy('Stdlib::Compat::String', 'validate_string', $user_id)
-  validate_legacy('Stdlib::Compat::Bool', 'validate_bool', $manage_packages)
 
   include ::nixstats::params
   include ::nixstats::user
