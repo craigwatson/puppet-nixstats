@@ -18,17 +18,24 @@
 #
 class nixstats::install {
 
-  if $::nixstats::manage_packages == true {
-    ensure_packages(['curl','gzip','sysstat',$::nixstats::params::cron_package], {'ensure' => 'present'})
-    $require = [File['/etc/nixstats'],Package['curl']]
-  } else {
-    $require = File['/etc/nixstats']
-  }
+  include ::python
 
-  exec { 'download_nixstats':
-    command => '/usr/bin/curl -k -o /etc/nixstats/nixstats.sh https://api.nixstats.com/nixstats.sh',
-    creates => '/etc/nixstats/nixstats.sh',
-    require => $require,
+  $packages = [
+    'python-dev',
+    'libffi-dev',
+    'libssl-dev',
+    'python-setuptools',
+    'gcc',
+    'libevent-dev',
+    'python-pip'
+  ]
+
+  ensure_packages($packages)
+
+  package { 'nixstats':
+    ensure   => $::nixstats::package_ensure,
+    provider => 'pip',
+    require  => User['nixstats'],
   }
 
 }

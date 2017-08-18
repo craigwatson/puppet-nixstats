@@ -1,0 +1,9 @@
+[Unit]
+Description=Nixstatsagent
+
+[Service]
+ExecStart=/usr/local/bin/nixstatsagent
+User=nixstats
+
+[Install]
+WantedBy=multi-user.target

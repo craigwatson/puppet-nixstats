@@ -9,12 +9,6 @@
 #   The hexadecimal user ID found on your NIXStats control panel when adding a
 #   new node. It will look something like '55d1d06265689e75148b4567'.
 #
-# [*manage_packages*]
-#   Whether to manage associated packages or not. Helpful if you already have
-#   other modules managing these packages. Either way, the module will only
-#   manage them if they aren't declared elsewhere.
-#   Default: true (boolean)
-#
 # == Actions:
 #
 # * Adds the system 'nixstats' user and group
@@ -33,14 +27,15 @@
 #
 #
 class nixstats (
-  String   $user_id,
-  Boolean  $manage_packages = true,
-) {
+  String $user_id,
+  String $package_ensure = $::nixstats::params::package_ensure,
+  String $package_enable = $::nixstats::params::package_enable,
+  String $service_ensure = $::nixstats::params::service_ensure,
+) inherits nixstats::params {
 
-  include ::nixstats::params
   include ::nixstats::user
   include ::nixstats::config
   include ::nixstats::install
-  include ::nixstats::cron
+  include ::nixstats::service
 
 }

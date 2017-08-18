@@ -1,11 +1,8 @@
 # == Class: nixstats::config
 #
-# This class handles creating the directory structure surrounding NIXStats
-# and also storing the server ID and user ID.
-#
 # == Actions:
 #
-# None
+# - Deploys systemd service file and reloads systemds
 #
 # === Authors:
 #
@@ -18,36 +15,40 @@
 #
 class nixstats::config {
 
-  File {
-    owner   => 'nixstats',
-    group   => 'nixstats',
-    mode    => '0700',
-  }
-
-  file { '/etc/nixstats':
-    ensure  => directory,
-    require => [User['nixstats'],Group['nixstats']],
-  }
-
-  file { '/etc/nixstats/retry':
-    ensure  => directory,
-    require => File['/etc/nixstats'],
-  }
-
-  exec { 'nixstats_server_id':
-    command => "/bin/bash -c 'echo \"$(ip addr | grep inet) $(hostname)\"  | sha256sum | awk \"{print \$1}\" > /etc/nixstats/serverid'",
-    creates => '/etc/nixstats/serverid',
-    require => File['/etc/nixstats'],
-  }
-
-  file { '/etc/nixstats/token':
+  file { '/etc/nixstats.ini-dist':
     ensure  => file,
-    require => File['/etc/nixstats'],
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0644',
+    source  => 'puppet:///modules/nixstats/nixstats.ini',
+    require => Package['nixstatsagent'],
   }
 
-  file { '/etc/nixstats/user':
-    ensure  => file,
-    content => "${::nixstats::user_id}\n",
-    require => File['/etc/nixstats'],
+  exec { 'nixstats_copy_ini':
+    command => '/bin/cp /etc/nixstats.ini-dist /etc/nixstats.ini'
+    creates => '/etc/nixstats.ini',
+    require => File['/etc/nixstats.ini-dist'],
   }
+
+  file { '/etc/system/systemd/nixstatsagent.service':
+    ensure  => file,
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0644',
+    source  => 'puppet:///modules/nixstats/nixstatsagent.service',
+    notify  => Exec['nixstats_reload_systemd'],
+    require => Exec['nixstats_copy_ini'],
+  }
+
+  exec { 'nixstats_reload_systemd':
+    command     => '/bin/systemctl daemon-reload',
+    refreshonly => true,
+  }
+
+  exec { 'nixstats_store_userid':
+    command => "/usr/local/bin/nixstatshello ${::nixstats::user_id} /etc/nixstats-token.ini",
+    creates => '/etc/nixstats-token.ini'
+    require => Package['nixstatsagent']
+  }
+
 }

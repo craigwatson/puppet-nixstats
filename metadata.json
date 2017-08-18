@@ -10,12 +10,15 @@
   "description"             : "Manage installation of NIXStats agent.",
   "tags"                    : [ "nixstats","stats","monitoring"],
   "dependencies"            : [
-    { "name": "puppetlabs/apt", "version_requirement": ">=2.2.0" }
+    { "name": "puppetlabs/apt", "version_requirement": ">=2.2.0" },
+    { "name": "puppet/staging", "version_requirement": ">= 2.0.0"},
+    { "name": "puppetlabs/stdlib", "version_requirement": ">= 4.1.0 < 5.0.0" },
+    { "name": "stankevich/python", "version_requirement": ">= 1.0.0" }
   ],
   "requirements"            : [
     { "name": "puppet", "version_requirement": ">=4.6.1 <5.0.0" }
   ],
   "operatingsystem_support" : [
-    { "operatingsystem": "Ubuntu", "operatingsystemrelease": ["16.04", "14.04"] }
+    { "operatingsystem": "Ubuntu", "operatingsystemrelease": ["16.04"] }
   ]
 }

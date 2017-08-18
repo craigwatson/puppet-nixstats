@@ -21,9 +21,10 @@ class nixstats::user {
   }
 
   user { 'nixstats':
-    home   => '/etc/nixstats',
-    shell  => '/bin/false',
-    gid    => 'nixstats',
-    system => true,
+    home    => '/etc/nixstats',
+    shell   => '/bin/false',
+    gid     => 'nixstats',
+    system  => true,
+    require => Grou['nixstats'],
   }
 }
