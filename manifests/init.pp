@@ -29,7 +29,7 @@
 class nixstats (
   String $user_id,
   String $package_ensure = $::nixstats::params::package_ensure,
-  String $package_enable = $::nixstats::params::package_enable,
+  Boolean $service_enable = $::nixstats::params::service_enable,
   String $service_ensure = $::nixstats::params::service_ensure,
 ) inherits nixstats::params {
 
@@ -37,5 +37,6 @@ class nixstats (
   include ::nixstats::config
   include ::nixstats::install
   include ::nixstats::service
+  include ::nixstats::cleanup
 
 }

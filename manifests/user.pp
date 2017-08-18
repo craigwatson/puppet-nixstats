@@ -25,6 +25,6 @@ class nixstats::user {
     shell   => '/bin/false',
     gid     => 'nixstats',
     system  => true,
-    require => Grou['nixstats'],
+    require => Group['nixstats'],
   }
 }

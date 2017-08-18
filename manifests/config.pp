@@ -25,12 +25,12 @@ class nixstats::config {
   }
 
   exec { 'nixstats_copy_ini':
-    command => '/bin/cp /etc/nixstats.ini-dist /etc/nixstats.ini'
+    command => '/bin/cp /etc/nixstats.ini-dist /etc/nixstats.ini',
     creates => '/etc/nixstats.ini',
     require => File['/etc/nixstats.ini-dist'],
   }
 
-  file { '/etc/system/systemd/nixstatsagent.service':
+  file { '/etc/systemd/system/nixstatsagent.service':
     ensure  => file,
     owner   => 'root',
     group   => 'root',
@@ -47,7 +47,7 @@ class nixstats::config {
 
   exec { 'nixstats_store_userid':
     command => "/usr/local/bin/nixstatshello ${::nixstats::user_id} /etc/nixstats-token.ini",
-    creates => '/etc/nixstats-token.ini'
+    creates => '/etc/nixstats-token.ini',
     require => Package['nixstatsagent']
   }
 

@@ -26,13 +26,12 @@ class nixstats::install {
     'libssl-dev',
     'python-setuptools',
     'gcc',
-    'libevent-dev',
-    'python-pip'
+    'libevent-dev'
   ]
 
   ensure_packages($packages)
 
-  package { 'nixstats':
+  package { 'nixstatsagent':
     ensure   => $::nixstats::package_ensure,
     provider => 'pip',
     require  => User['nixstats'],
