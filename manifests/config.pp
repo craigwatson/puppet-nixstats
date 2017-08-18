@@ -15,6 +15,14 @@
 #
 class nixstats::config {
 
+  file { '/var/log/nixstatsagent.log':
+    ensure  => file,
+    owner   => 'nixstats',
+    group   => 'nixstats',
+    mode    => '0644',
+    require => User['nixstats'],
+  }
+
   file { '/etc/nixstats.ini-dist':
     ensure  => file,
     owner   => 'root',
