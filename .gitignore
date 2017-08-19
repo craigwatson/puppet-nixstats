@@ -2,6 +2,4 @@
 pkg
 runrake.sh
 spec/fixtures
-Gemfile
-Gemfile.lock
 .DS_Store

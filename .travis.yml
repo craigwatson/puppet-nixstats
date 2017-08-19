@@ -6,13 +6,12 @@ sudo: false
 language: ruby
 dist: trusty
 bundler_args: --without development
-before_install: rm .gemfile.lock || true
+before_install: rm Gemfile.lock || true
 rvm:
   - 1.9.3
   - 2.0.0
   - 2.1.10
 script: bundle exec rake test
-gemfile: .gemfile
 env:
   - PUPPET_GEM_VERSION="~> 4.6.0"
   - PUPPET_GEM_VERSION="~> 4.7.0"
