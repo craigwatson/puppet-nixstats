@@ -2,7 +2,7 @@
 
 ## 3.0.0
 
-### 2017-08-19 - Major Version release
+### 2017-09-01 - Major Version release
 
 #### Nixstats agent 1.0
 * The module has been updated to install the nixstatsagent Python agent and daemon, and cleanly remove the old shell agent and cron

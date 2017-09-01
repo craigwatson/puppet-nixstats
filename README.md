@@ -48,20 +48,19 @@ To stop the module from installing any supporting packages (e.g. `curl`), just s
 
 ### Classes
 
-#### `nixstats::config`
+#### `nixstats::cleanup`
+  * Cleans up the old version of the install script
 
+#### `nixstats::config`
   * Creates the directory structure and deploys the user/server IDs
 
 #### `nixstats::user`
-
   * Creates a system user and group for the agent to run as.
 
 #### `nixstats::install`
-
-  * Downloads the agent script, and optionally installs supporting system packages.
+  * Installs supporting system packages, followed by the `nixstatsagent` package via `pip`
 
 #### `nixstats::params`
-
   * O/S-specific and module configuration (e.g. paths to binaries and a boolean variable to control file deployment)
 
 ## Limitations
